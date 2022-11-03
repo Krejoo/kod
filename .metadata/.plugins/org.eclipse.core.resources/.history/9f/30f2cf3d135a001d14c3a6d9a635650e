@@ -1,0 +1,21 @@
+package gerumap.gui.swing;
+
+import gerumap.util.UserPreferences;
+
+/**
+ * Main application frame, implemented as Singleton
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ *
+ */
+public class MainFrame extends AbstractFrameWithPreferences{
+
+	private MainFrame() {
+		super(UserPreferences.getLocalString("app_title"), 300, 200, 600, 400);
+		
+	}
+
+	private static final long serialVersionUID = 1L;
+
+}

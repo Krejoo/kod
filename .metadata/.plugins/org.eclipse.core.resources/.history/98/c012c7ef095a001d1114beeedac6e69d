@@ -1,0 +1,9 @@
+package gerumap;
+
+public class AppCore {
+
+	public static void main(String[] args) {
+		// TODO Ovde treba dodati start
+	}
+
+}

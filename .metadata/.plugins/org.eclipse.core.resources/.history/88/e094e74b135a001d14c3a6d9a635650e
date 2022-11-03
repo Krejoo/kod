@@ -1,0 +1,16 @@
+package gerumap;
+
+/**
+ * Start of application
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ *
+ */
+public class AppCore {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

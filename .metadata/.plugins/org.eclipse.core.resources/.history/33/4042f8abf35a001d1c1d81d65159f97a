@@ -1,0 +1,5 @@
+package gerumap.gui.swing.controller;
+
+public class AbstractGeRuMapAction {
+
+}

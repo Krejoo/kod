@@ -1,0 +1,11 @@
+package gerumap.gui.swing;
+
+/**
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ *
+ */
+public class MainFrame {
+
+}

@@ -1,0 +1,5 @@
+package gerumap.core;
+
+public abstract class ApplicationFramework {
+
+}

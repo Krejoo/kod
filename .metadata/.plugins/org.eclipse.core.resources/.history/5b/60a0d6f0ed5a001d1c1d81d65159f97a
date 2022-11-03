@@ -1,0 +1,145 @@
+package gerumap.gui.swing;
+
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.prefs.Preferences;
+
+import javax.swing.JFrame;
+
+import gerumap.util.UserPreferences;
+
+/**
+ * JFrame that uses Preferences to remember its size and location.
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ */
+public abstract class AbstractFrameWithPreferences extends JFrame {
+	private static final long serialVersionUID = 1L;
+	private static final String TOP = "top";
+    private static final String LEFT = "left";
+    private static final String HEIGHT = "height";
+    private static final String WIDTH = "width";
+    private static final String MAXIMIZED = "maximized";
+    
+
+    private final Preferences userPreferences;
+
+    protected AbstractFrameWithPreferences(String title, int minWidth, int minHeight, int prefWidh, int prefHeight) {
+        super(title);
+        userPreferences = Preferences.userRoot().node(getClass().getCanonicalName());
+
+        initWindow(minWidth, minHeight, prefWidh, prefHeight);
+        initActionHandlers();
+    }
+    
+    public int getIntPreference(String name) {
+    	return userPreferences.getInt(name, 0);
+    }
+    
+    public void putIntPreference(String name, int value) {
+    	userPreferences.putInt(name, value);
+    }
+
+    public Dimension getWindowSize(int defaultW, int defaultH) {
+        int w = userPreferences.getInt(WIDTH, defaultW);
+        int h = userPreferences.getInt(HEIGHT, defaultH);
+        return new Dimension(w, h);
+    }
+
+    public void saveWindowSize() {
+        Dimension size = getSize();
+        userPreferences.putInt(WIDTH, size.width);
+        userPreferences.putInt(HEIGHT, size.height);
+    }
+
+    public Point getWindowLocation(int defaultX, int defaultY) {
+        int x = userPreferences.getInt(LEFT, defaultX);
+        int y = userPreferences.getInt(TOP, defaultY);
+        return new Point(x, y);
+    }
+
+    public void saveWindowLocation() {
+        Point location = getLocation();
+        userPreferences.putInt(LEFT, location.x);
+        userPreferences.putInt(TOP, location.y);
+    }
+
+    public void saveMaximizedState() {
+        userPreferences.putBoolean(MAXIMIZED, Frame.MAXIMIZED_BOTH == getExtendedState());
+    }
+
+    public boolean isMaximized() {
+        return userPreferences.getBoolean(MAXIMIZED, false);
+    }
+
+    private void initActionHandlers() {
+
+        addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (Frame.MAXIMIZED_BOTH != getExtendedState()) {
+                    saveWindowSize();
+                }
+                saveMaximizedState();
+                super.componentResized(e);
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                if (Frame.MAXIMIZED_BOTH != getExtendedState()) {
+                    saveWindowLocation();
+                }
+                saveMaximizedState();
+                super.componentMoved(e);
+            }
+
+        });
+
+        addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                saveMaximizedState();
+                super.windowStateChanged(e);
+            }
+
+        });
+        
+    }
+    
+    
+
+    private void initWindow(int minWidth, int minHeight, int prefWidh, int prefHeight) {
+        setFont(UserPreferences.get().getFont());
+        setMinimumSize(new Dimension(minWidth, minHeight));
+        Dimension maxSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setMaximumSize(maxSize);
+        setSize(getWindowSize(prefWidh, prefHeight));
+        int defaultX = (maxSize.width - getSize().width) / 2;
+        int defaultY = (maxSize.height - getSize().height) / 2;
+        setLocation(getWindowLocation(defaultX, defaultY));
+        if (isMaximized()) {
+            setExtendedState(Frame.MAXIMIZED_BOTH);
+        }
+        GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] devices = g.getScreenDevices();
+        Rectangle bounds = new Rectangle(0, 0, 0, 0);
+        for (GraphicsDevice gd : devices) {
+            bounds.add(gd.getDefaultConfiguration().getBounds());
+        }
+        if (!bounds.contains(getBounds())) {
+            setLocationRelativeTo(null);
+        }
+    }
+}

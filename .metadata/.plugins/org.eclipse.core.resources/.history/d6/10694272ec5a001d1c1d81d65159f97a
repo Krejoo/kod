@@ -1,0 +1,31 @@
+package gerumap.gui.swing;
+
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+import gerumap.util.UserPreferences;
+
+/**
+ * 
+ * @author Djordje Krejakovic
+ * @since 2 November 2022
+ *
+ */
+public class ControlFactory {
+	public static JMenu createMenu(JMenuBar parent, String text) {
+		JMenu menu = new JMenu(UserPreferences.getLocalString(text));
+		menu.setFont(UserPreferences.get().getFont());
+		parent.add(menu);
+		return menu;
+	}
+	public static JMenuItem createMenuItem(JMenu parent, String text, ActionListener listener) {
+		JMenuItem item = new JMenuItem(text);
+		item.setFont(UserPreferences.get().getFont());
+		item.addActionListener(listener);
+		parent.add(item);
+		return item;
+	}
+}

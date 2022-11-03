@@ -1,0 +1,21 @@
+package gerumap.gui.swing;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+import gerumap.util.UserPreferences;
+
+/**
+ * 
+ * @author Djordje Krejakovic
+ * @since 2 November 2022
+ *
+ */
+public class ControlFactory {
+	public static JMenu createMenu(JMenuBar parent, String text) {
+		JMenu menu = new JMenu(text);
+		menu.setFont(UserPreferences.get().getFont());
+		parent.add(menu);
+		return menu;
+	}
+}

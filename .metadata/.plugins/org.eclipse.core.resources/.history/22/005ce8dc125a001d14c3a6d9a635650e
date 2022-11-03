@@ -1,0 +1,12 @@
+package gerumap.gui.swing;
+
+/**
+ * Main application frame, implemented as Singleton
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ *
+ */
+public class MainFrame {
+
+}

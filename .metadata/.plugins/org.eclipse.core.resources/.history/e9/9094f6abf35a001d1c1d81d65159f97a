@@ -1,0 +1,13 @@
+package gerumap.gui.swing;
+
+import gerumap.core.Gui;
+
+public class SwingGui implements Gui{
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

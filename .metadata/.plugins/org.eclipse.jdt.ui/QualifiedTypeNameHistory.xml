@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="gerumap.gui.swing.AbstractFrameWithPreferences"/>
+    <fullyQualifiedTypeName name="gerumap.gui.swing.MainFrame"/>
+    <fullyQualifiedTypeName name="javax.swing.UIManager"/>
+    <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+    <fullyQualifiedTypeName name="gerumap.AppCore"/>
+    <fullyQualifiedTypeName name="gerumap.util.SupportedLanguage"/>
+    <fullyQualifiedTypeName name="java.awt.event.WindowListener"/>
+    <fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
+    <fullyQualifiedTypeName name="gerumap.util.UserPreferences"/>
+    <fullyQualifiedTypeName name="javax.swing.WindowConstants"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
+    <fullyQualifiedTypeName name="javax.swing.JMenu"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="gerumap.gui.swing.ControlFactory"/>
+    <fullyQualifiedTypeName name="javax.swing.Action"/>
+    <fullyQualifiedTypeName name="gerumap.gui.swing.SwingGui"/>
+    <fullyQualifiedTypeName name="gerumap.core.ApplicationFramework"/>
+    <fullyQualifiedTypeName name="gerumap.core.Gui"/>
+    <fullyQualifiedTypeName name="gerumap.gui.swing.view.MainFrame"/>
+</qualifiedTypeNameHistroy>

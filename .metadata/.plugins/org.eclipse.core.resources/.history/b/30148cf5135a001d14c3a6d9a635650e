@@ -1,0 +1,18 @@
+package gerumap;
+
+import gerumap.gui.swing.MainFrame;
+
+/**
+ * Start of application
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ *
+ */
+public class AppCore {
+
+	public static void main(String[] args) {
+		MainFrame.get().setVisible(true);
+	}
+
+}

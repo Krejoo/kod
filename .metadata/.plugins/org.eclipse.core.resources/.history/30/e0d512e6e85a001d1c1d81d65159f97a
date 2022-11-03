@@ -1,0 +1,60 @@
+package gerumap.gui.swing;
+
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+import gerumap.AppCore;
+import gerumap.util.UserPreferences;
+
+/**
+ * Main application frame, implemented as Singleton
+ * 
+ * @author Djordje Krejakovic
+ * @since 1 November 2022
+ *
+ */
+public class MainFrame extends AbstractFrameWithPreferences{
+	private static final long serialVersionUID = 1L;
+	private static MainFrame singletonInstance;
+	
+	public static MainFrame get() {
+		if(singletonInstance == null) {
+			singletonInstance = new MainFrame();
+		}
+		return singletonInstance;
+	}
+	
+	private MainFrame() {
+		super(UserPreferences.getLocalString("app_title"), 300, 200, 600, 400);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setIconImage(new ImageIcon(AppCore.class.getResource("/images/MindMap.gif")).getImage());
+		createToolbar();
+		createMainMenu();
+		createContentPanel();
+	}
+
+
+	private void createMainMenu() {
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu fileMenu = new JMenu("File");
+		fileMenu.setFont(UserPreferences.get().getFont());
+		menuBar.add(fileMenu);
+	}
+
+	private void createToolbar() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void createContentPanel() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
+
+}
